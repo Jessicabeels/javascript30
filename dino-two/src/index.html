@@ -9,35 +9,44 @@
 <body>
     <div class="header">Dino Dating</div>
 
-
-    <form name="formStuff" class="form">
-        <div class="formback">
-            <div>
-                <h4>Name</h4>
-                <input type="text" name="todoTitle" placeholder="Title">
+    <div class="input">
+        <form name="formStuff" class="form">
+            <div class="formback">
+                <div>
+                    <h4>Title</h4>
+                    <input type="text" name="todoTitle" placeholder="Title">
+                </div>
+                <div>
+                    <h4>Name</h4>
+                    <input type="text" name="name" placeholder="Name">
+                </div>
+                    <h4>Bio</h4>
+                    <input type="text" name="todoDescription" placeholder="Tell us about yourself!">
             </div>
-                <h4>Description</h4>
-                <input type="text" name="todoDescription" placeholder="Description">
-        </div>
-        <div>
-            <h4>Age</h4>
-            <input type="number" name="age" min="0" max="1000000" placeholder="Age">
-        </div>
-        
-        <div>
-            <h4>Image</h4>
-            <input type="text" name="imgUrl" src="" placeholder="url">
-        </div>
+            <div>
+                <h4>Age</h4>
+                <input type="number" name="age" min="0" max="1000000000" placeholder="Age">
+            </div>
+            
+            <div>
+                <h4>Image</h4>
+                <input type="text" name="imgUrl" src="" placeholder="url">
+            </div>
 
-        <button class='sub'>Submit</button>
+            <button class='sub'>Submit</button>
 
-    </form>
+        </form>
+    </div>
 
     <h1 class="your-dates">Your Dates</h1>
     <div id="container"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src='app.js'></script>
+
+    <p id="para">Some element.FetById</p>
+    <button onclick="changeColor('blue');">blue</button>
+    <button onclick="changeColor('green');">green</button> 
 
 </body>
 

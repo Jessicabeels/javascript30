@@ -6,7 +6,8 @@ const postForm = document.formStuff
 //use axios to get list
 function getStuff () { 
     axios.get("https://vschool-cors.herokuapp.com?url=https://api.vschool.io/dino/todo").then(function (response) {
-        const todos = response.data
+    console.log(response)    
+    const todos = response.data
         listTodos(todos)
     }).catch(error => console.log(error))
 }
@@ -21,15 +22,17 @@ function listTodos(todosArr) {
         const pic = document.createElement('img')
         const delBtn = document.createElement('button')
         const checkbox = document.createElement('input')
+        const name = document.createElement('name')
 
 
-        //edit the element / give it content
+        //edit the element // give it content
         container.classList.add("todo-container")
         title.textContent = todosArr[i].title
         pic.setAttribute("src", todosArr[i].imgUrl)
         pic.setAttribute("class", "api-img" )
-        age.textContent = "$" + todosArr[i].age
+        age.textContent = todosArr[i].age
         description.textContent=todosArr[i].description
+        name.textContent = todosArr[i].name
 
         //second edits //why?
         container["data-todoID"] = todosArr[i]._id
@@ -55,7 +58,7 @@ function listTodos(todosArr) {
 
         //Delete button DELETE request
         delBtn.addEventListener("click", function(e){
-            const ID = e.targer.parentNode["data-todoID"]
+            const ID = e.target.parentNode["data-todoID"]
             axios.delete(`https://api.vschool.io/dino/todo/${ID}`).then(response => {
                 window.location.reload();
                 e.target.parentNode.remove()
@@ -65,7 +68,10 @@ function listTodos(todosArr) {
         container.appendChild(pic)
         container.appendChild(title)
         container.appendChild(description)
-        // container.appendChild(age)
+        container.appendChild(age)
+        container.appendChild(checkbox)
+        container.appendChild(delBtn)
+        container.appendChild(name)
 
         todoList.appendChild(container)
         //adding to the container
@@ -82,7 +88,8 @@ postForm.addEventListener("submit", (e) => {
         title: postForm.todoTitle.value,
         description: postForm.todoDescription.value,
         age: postForm.age.value,
-        imgUrl: postForm.imgUrl.value
+        imgUrl: postForm.imgUrl.value,
+        name: postForm.name.value
     }
     console.log(newTodo)
     postForm.title.value = ""
@@ -97,4 +104,9 @@ postForm.addEventListener("submit", (e) => {
 
 
 getStuff()
+
+function changeColor(newColor) {
+    let elem = document.getElementById('para')
+    elem.style.color = newColor
+}
 
