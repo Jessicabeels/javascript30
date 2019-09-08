@@ -16,7 +16,7 @@ function listTodos(todosArr) {
         //show up on the DOM, create elements
         const container = document.createElement('div')
         const title = document.createElement('h3')
-        const price = document.createElement('h5')
+        const age = document.createElement('h6')
         const description = document.createElement('h5')
         const pic = document.createElement('img')
         const delBtn = document.createElement('button')
@@ -28,7 +28,7 @@ function listTodos(todosArr) {
         title.textContent = todosArr[i].title
         pic.setAttribute("src", todosArr[i].imgUrl)
         pic.setAttribute("class", "api-img" )
-        price.textContent = "$" + todosArr[i].price
+        age.textContent = "$" + todosArr[i].age
         description.textContent=todosArr[i].description
 
         //second edits //why?
@@ -53,16 +53,19 @@ function listTodos(todosArr) {
             })
         })
 
-        // //Delete button DELETE request
-        // delBtn.addEventListener("click", function(e){
-        //     const ID = e.targer.parentNode["data-todoID"]
-        //     axios
-        // })
+        //Delete button DELETE request
+        delBtn.addEventListener("click", function(e){
+            const ID = e.targer.parentNode["data-todoID"]
+            axios.delete(`https://api.vschool.io/dino/todo/${ID}`).then(response => {
+                window.location.reload();
+                e.target.parentNode.remove()
+            })
+        })
 
         container.appendChild(pic)
         container.appendChild(title)
         container.appendChild(description)
-        container.appendChild(age)
+        // container.appendChild(age)
 
         todoList.appendChild(container)
         //adding to the container
@@ -70,14 +73,15 @@ function listTodos(todosArr) {
      
     }
 }
-
+//form ///////// POST
+///select form element
 
 postForm.addEventListener("submit", (e) => {
     e.preventDefault()
     const newTodo = {
         title: postForm.todoTitle.value,
         description: postForm.todoDescription.value,
-        price: postForm.age.value,
+        age: postForm.age.value,
         imgUrl: postForm.imgUrl.value
     }
     console.log(newTodo)
