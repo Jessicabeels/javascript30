@@ -69,14 +69,15 @@ var peopleWhoWantToSeeMadMaxFuryRoad = [
     }
   ] 
 
-  const seeMadMax = () => {
+  const seeMadMax = (arr) => {
       for (i = 0; i < peopleWhoWantToSeeMadMaxFuryRoad.length; i++){
           if (this.age < 18){
-              return this.name + 'is not old enough'
+              console.log(this.name + 'is not old enough')
           } else if (this.age >= 18){
-              return this.name + 'is old enough'
+              console.log(this.name + 'is old enough')
           }
       }
+    
   }
 
-  console.log(seeMadMax(peopleWhoWantToSeeMadMaxFuryRoad[0]))
+seeMadMax(peopleWhoWantToSeeMadMaxFuryRoad)
